@@ -7,7 +7,7 @@ const catalogo = [
     nombre: "Silla de madera",
     precio: 85990,
     categoria: "Sillas",
-    imagen: "/asset/img/silla/silla.webp",
+    imagen: "./asset/img/silla/silla.webp",
     descripcion: "Silla de madera ideal para comedor pequeño",
   },
   {
@@ -15,7 +15,7 @@ const catalogo = [
     nombre: "Mesa de comedor",
     precio: 1200000,
     categoria: "Comedores",
-    imagen: "/asset/img/mesa de comedor/mesaComedor.webp",
+    imagen: "./asset/img/mesacomedor/mesaComedor.webp",
     descripcion: "Comedor para una familia",
   },
   {
@@ -23,7 +23,7 @@ const catalogo = [
     nombre: "Arrimo con Respaldo",
     precio: 270000,
     categoria: "Arrimos",
-    imagen: "/asset/img/arrimo con respaldo/arrimo.webp",
+    imagen: "./asset/img/arrimoConRespaldo/arrimo.webp",
     descripcion: "Hermoso arrimo para la entrada del hogar",
   },
   {
@@ -31,7 +31,7 @@ const catalogo = [
     nombre: "Arrimo",
     precio: 180000,
     categoria: "Arrimos",
-    imagen: "/asset/img/arrimo/arrimo.webp",
+    imagen: "./asset/img/arrimo/arrimo.webp",
     descripcion: "Un clasico arrimo, ideal para la entrada de un depto mediano",
   },
 ];
@@ -223,3 +223,22 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCatalogo();
   renderCarrito();
 });
+
+function mostrarModal() {
+  const modal = new bootstrap.Modal($("modalAuth"));
+  modal.show();
+}
+
+function cerrarSesion() {
+  usuarioLogueado = false;
+  localStorage.removeItem("usuarioEcommerce");
+  $("estado-usuario").textContent = "Cuenta";
+}
+
+function vaciarCarrito() {
+  carrito = [];
+  descuentoAplicado = false;
+  $("codigo-descuento").disabled = false;
+  guardarEstado();
+  renderCarrito();
+}

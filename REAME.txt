@@ -1,20 +1,41 @@
-# M3 — E-Commerce: Carrito y Autenticación
+Tocar Madera – Demo Ecommerce
+=============================
 
-## Descripción
-Implementación de carrito (agregar/quitar, descuento opcional) y autenticación básica con Modal de Bootstrap.
+Proyecto frontend desarrollado con:
+- HTML
+- CSS
+- JavaScript
+- Bootstrap 5
 
-## Tecnologías
-- HTML5, CSS3, JavaScript
-- Bootstrap 5 (CDN)
+Funcionalidades:
+- Catálogo de productos
+- Carrito de compras
+- Aplicación de descuento
+- Modal funcional
+- Compatible con GitHub Pages
 
-## Ejecutar
-- Abrir `index.html` en el navegador (o usar Live Server).
+Estructura recomendada:
 
-## Funcionalidades
-- Carrito (arreglo de productos)
-- Descuento "DESC15"
-- Modal de login (PASSWORD_MAESTRA)
-- Render en tabla Bootstrap
+/
+│── index.html
+│
+├── css/
+│   └── style.css
+│
+├── js/
+│   └── app.js
+│
+└── asset/
+    └── img/
+        ├── mesa.webp
+        ├── silla.webp
+        └── comedor.webp
 
-## Autor
--[Jorge bosch  https://github.com/Jboschlagos]
+Notas:
+- Todas las rutas son relativas (./) para compatibilidad con GitHub Pages
+- Los nombres de archivos y carpetas deben coincidir exactamente
+- No usar rutas absolutas
+
+Autor:
+Nombre jorge bosch
+

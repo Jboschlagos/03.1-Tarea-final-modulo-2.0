@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Tocar Madera | Mercado en linea</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="/asset/css/style.css">
+</head>
+
+<body>
+      <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+
+            <img src="./asset/img/logoSinFondo.png" alt="Tocar Madera" width="50" class="me-2">
+
+            <a class="navbar-brand text-dark fw-bold" href="index.html">
+                Tocar Madera
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#catalogo">Catálogo</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#carrito">
+                            <i class="bi bi-cart3"></i>
+                            <span id="contador-carrito" class="badge bg-danger">0</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle"></i>
+                            <span id="estado-usuario">Cuenta</span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <button class="dropdown-item" onclick="mostrarModal('login')">
+                                    Iniciar sesión
+                                </button>
+                            </li>
+                            <li>
+                                <button class="dropdown-item" onclick="mostrarModal('registro')">
+                                    Registrarse
+                                </button>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <button class="dropdown-item" id="btn-cerrar-sesion" style="display: none;"
+                                    onclick="cerrarSesion()">
+                                    Cerrar sesión
+                                </button>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Header -->
+    <header class="container pt-4">
+        <div class="row align-items-center justify-content-center text-center">
+
+            <div class="col-md-6 mb-4">
+                <h1 class="display-6 fw-bold">Bienvenido a Tocar Madera</h1>
+                <p class="lead">
+                    Un mercado en línea para artesanos y trabajadores de la madera
+                </p>
+
+                <div class="alert alert-info mt-3 d-none" id="mensaje-bienvenida">
+                    ¡Bienvenido!
+                </div>
+            </div>
+            <div class="col-md-6 d-flex justify-content-center">
+                <img src="./asset/img/logoSinFondo.png" class="img-fluid" style="max-width: 250px;"
+                    alt="Logo de Tocar Madera">
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- Catálogo de Productos -->
+    <section id="catalogo" class="container my-5">
+        <h2 class="text-center mb-4">Catalogo</h2>
+        <div class="row" id="lista-productos">
+            <!-- Los productos se cargan dinámicamente con JavaScript -->
+        </div>
+    </section>
+
+    <!-- Carrito de Compras -->
+    <section id="carrito" class="container my-5">
+        <h2 class="text-center mb-4">Tu Carrito de Compras</h2>
+
+        <!-- Código de Descuento -->
+        <div class="row mb-4">
+            <div class="col-md-6 offset-md-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="codigo-descuento"
+                        placeholder="Ingresa código de descuento (ej: DESC15)">
+                    <button class="btn btn-success" type="button" onclick="aplicarDescuentoCarrito()">
+                        <i class="bi bi-tag"></i> Aplicar
+                    </button>
+                </div>
+                <div class="form-text">Código válido: <strong>DESC15</strong> (15% de descuento)</div>
+            </div>
+        </div>
+
+        <!-- Tabla del Carrito -->
+        <div class="table-responsive">
+            <table class="table table-hover table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio Unitario</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-carrito">
+                    <!-- Los productos del carrito se cargan aquí -->
+                    <tr id="carrito-vacio">
+                        <td colspan="5" class="text-center py-4">
+                            <i class="bi bi-cart-x display-1 text-muted"></i>
+                            <p class="mt-3">Tu carrito está vacío</p>
+                            <a href="#catalogo" class="btn btn-primary">Ver productos</a>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot class="table-group-divider">
+                    <tr>
+                        <td colspan="3" class="text-end fw-bold">Subtotal:</td>
+                        <td id="subtotal" class="fw-bold">$0</td>
+                        <td></td>
+                    </tr>
+                    <tr id="fila-descuento" style="display: none;">
+                        <td colspan="3" class="text-end text-success fw-bold">Descuento (15%):</td>
+                        <td id="descuento" class="text-success fw-bold">-$0</td>
+                        <td></td>
+                    </tr>
+                    <tr class="table-active">
+                        <td colspan="3" class="text-end fw-bold fs-5">Total:</td>
+                        <td id="total" class="fw-bold fs-5">$0</td>
+                        <td>
+                            <button class="btn btn-danger" onclick="vaciarCarrito()" disabled>
+                                <i class="bi bi-trash"></i> Vaciar
+                            </button>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </section>
+
+    <!-- Modal de Autenticación -->
+    <div class="modal fade" id="modalAuth" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitulo">Iniciar Sesión</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formAuth" onsubmit="return false;">
+                        <div class="mb-3">
+                            <label for="usuario" class="form-label">Usuario</label>
+                            <input type="text" class="form-control" id="usuario" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password" required>
+                            <div class="form-text">Contraseña maestra: <strong>1234</strong></div>
+                        </div>
+                        <div class="alert alert-danger" id="mensaje-error" style="display: none;">
+                            Credenciales incorrectas. Intenta nuevamente.
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btn-autenticar"
+                        onclick="procesarAutenticacion()">Ingresar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+
+                <!-- Marca -->
+                <div class="col-md-4 mb-3">
+                    <h5>Tocar Madera</h5>
+                    <p class="small">Mercado hecho a mano</p>
+                </div>
+
+                <!-- Contacto -->
+                <div class="col-md-4 mb-3">
+                    <h5>Contacto</h5>
+                    <p class="small mb-1">Email: contacto@tocarmadera.cl</p>
+                    <p class="small mb-1">Teléfono: +56 9 1234 5678</p>
+                    <p class="small">Chile</p>
+                </div>
+
+                <!-- Redes -->
+                <div class="col-md-4 mb-3 text-md-end">
+                    <h5>Redes Sociales</h5>
+                    <a href="https://www.instagram.com/tocarmadera_/" class="text-white me-3 fs-5">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/feriatocarmadera/" class="text-white me-3 fs-5">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="+56 9 1234 5678" class="text-white fs-5">
+                        <i class="bi bi-whatsapp"></i>
+                    </a>
+                </div>
+
+            </div>
+
+            <hr class="border-secondary">
+
+            <div class="text-center small">
+                © 2025 Ejercicio Práctico Módulo 3 · Portafolio – Carrito y Autenticación
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap JS Bundle -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="/asset/js/app.js"></script>
+</body>
+
+</html>

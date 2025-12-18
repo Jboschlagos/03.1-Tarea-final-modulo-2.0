@@ -14,22 +14,18 @@ Funcionalidades:
 - Modal funcional
 - Compatible con GitHub Pages
 
-Estructura recomendada:
+Estructura de carpetas:
 
-/
+├── README.md
 │── index.html
-│
-├── css/
-│   └── style.css
-│
-├── js/
-│   └── app.js
-│
-└── asset/
-    └── img/
-        ├── mesa.webp
-        ├── silla.webp
-        └── comedor.webp
+│── asset/
+│   ├── css/
+│   │   └── style.css
+│   ├── img/
+│   │   
+│   ├── js/
+│   │   └── app.js
+
 
 Notas:
 - Todas las rutas son relativas (./) para compatibilidad con GitHub Pages
@@ -38,4 +34,7 @@ Notas:
 
 Autor:
 Nombre jorge bosch
-
+Link 
+https://github.com/Jboschlagos
+Link Tarea 
+https://github.com/Jboschlagos/03.1-Tarea-final-modulo-2.0/actions/runs/20321090611
